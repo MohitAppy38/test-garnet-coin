@@ -118,8 +118,8 @@ public class HomeController {
 		map.add("version", "1");
 		map.add("key", "6f40ec3464c086703cd6ed2428a78e2724ecbcd39b6b88945d9584fabaef1c56");
 		map.add("cmd", "create_transaction");
-		map.add("currency1", "USD");
-		map.add("currency2", "USD");
+		map.add("currency1", "BTC");
+		map.add("currency2", "BTC");
 		map.add("amount", amt);
 		map.add("format", "json");
 		StringBuffer requestURI = request.getRequestURL();
