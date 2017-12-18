@@ -55,9 +55,9 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/ipn", method = RequestMethod.POST)
-	public String ipn(HttpServletRequest request, @RequestBody final Map<String, String> ipnMap) throws IOException {
+	public String ipn(HttpServletRequest request) throws IOException {
 		LOGGER.info("/IPN-GET");
-		LOGGER.info(GlobalUtility.convertClassToJson(ipnMap));
+		LOGGER.info(GlobalUtility.convertClassToJson(request));
 
 		Enumeration<String> attributeNames = request.getAttributeNames();
 		LOGGER.info("Before - iterate");
@@ -76,12 +76,12 @@ public class HomeController {
 		File file = new File(path);
 		if (file.createNewFile()) {
 			LOGGER.info("File is created!");
-			FileWriter fw = new FileWriter(file);
-			String data = GlobalUtility.convertClassToJson(ipnMap);
-			LOGGER.info("date - " + data);
-			fw.write(data);
-			fw.flush();
-			fw.close();
+			//FileWriter fw = new FileWriter(file);
+			//String data = GlobalUtility.convertClassToJson(ipnMap);
+			//LOGGER.info("date - " + data);
+			//fw.write(data);
+			//fw.flush();
+			//fw.close();
 		} else {
 			LOGGER.info("File already exists.");
 		}
