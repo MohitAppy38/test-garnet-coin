@@ -1,17 +1,12 @@
 package com.example.demo;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
-import java.util.Enumeration;
 import java.util.Formatter;
 import java.util.Iterator;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.crypto.Mac;
@@ -27,7 +22,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,41 +46,6 @@ public class HomeController {
 	public String ico() {
 		LOGGER.info("/ico endpoint accessed");
 		return "ico";
-	}
-
-	@RequestMapping(value = "/ipn", method = RequestMethod.POST)
-	public String ipn(HttpServletRequest request) throws IOException {
-		LOGGER.info("/IPN-GET");
-		LOGGER.info(GlobalUtility.convertClassToJson(request));
-
-		Enumeration<String> attributeNames = request.getAttributeNames();
-		LOGGER.info("Before - iterate");
-		while (attributeNames.hasMoreElements()) {
-			String attributeName = attributeNames.nextElement();
-			LOGGER.info("attributeName - " + attributeName);
-			String value = (String) request.getAttribute(attributeName);
-			LOGGER.info("value - " + value);
-		}
-		LOGGER.info("After - iterate");
-
-		String path = request.getServletContext().getRealPath(File.separator);
-		LOGGER.info("path - " + path);
-		path = path + File.separator + "newFile" + System.nanoTime() + ".txt";
-		LOGGER.info("new path - " + path);
-		File file = new File(path);
-		if (file.createNewFile()) {
-			LOGGER.info("File is created!");
-			//FileWriter fw = new FileWriter(file);
-			//String data = GlobalUtility.convertClassToJson(ipnMap);
-			//LOGGER.info("date - " + data);
-			//fw.write(data);
-			//fw.flush();
-			//fw.close();
-		} else {
-			LOGGER.info("File already exists.");
-		}
-		LOGGER.info("End - ipn");
-		return "ipn";
 	}
 
 	@RequestMapping(value = "/jstlCheck", method = RequestMethod.POST)

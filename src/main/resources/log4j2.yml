@@ -12,8 +12,8 @@ Configutation:
       name: CONSOLE
       target: SYSTEM_OUT
       PatternLayout:
-        #Pattern: "%d{ISO8601} %-5p [%c{3}] [%t] %m%n"
-        Pattern: "%m%n"
+        Pattern: "%d{ISO8601} %l [%c{3}] [%t] %m%n"
+        #Pattern: "%m%n"
     RollingFile:
       - name: APPLICATION
         fileName: ${log-path}/test-hmac-sha-512-web.log
