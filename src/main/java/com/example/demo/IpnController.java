@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -24,39 +23,44 @@ public class IpnController {
 	public String ipn(HttpServletRequest request) throws IOException {
 		LOGGER.info("start - /IPN-GET");
 		// LOGGER.info(GlobalUtility.convertClassToJson(request));
-		LOGGER.info("request.getAuthType - " + request.getAuthType());
-		LOGGER.info("request.getCharacterEncoding - " + request.getCharacterEncoding());
-		LOGGER.info("request.getContentLength - " + request.getContentLength());
-		LOGGER.info("request.getContentLengthLong - " + request.getContentLengthLong());
-		LOGGER.info("request.getContentType - " + request.getContentType());
-		LOGGER.info("request.getContextPath - " + request.getContextPath());
-		LOGGER.info("request.isSecure - " + request.isSecure());
-		LOGGER.info("request.getPathInfo - " + request.getPathInfo());
-		LOGGER.info("request.getQueryString- " + request.getQueryString());
-		LOGGER.info("request.getMethod - " + request.getMethod());
-		LOGGER.info("request.getRequestURI - " + request.getRequestURI());
-		LOGGER.info("request.getRequestURL - " + request.getRequestURL());
-		LOGGER.info("request.getProtocol- " + request.getProtocol());
-		LOGGER.info("request.getRemoteAddr- " + request.getRemoteAddr());
-		LOGGER.info("request.getRemoteHost - " + request.getRemoteHost());
-		LOGGER.info("request.getRemotePort - " + request.getRemotePort());
-		LOGGER.info("request.getRemoteUser- " + request.getRemoteUser());
-		LOGGER.info("request.getScheme - " + request.getScheme());
-		LOGGER.info("request.getServerName - " + request.getServerName());
-		LOGGER.info("request.getServerPort - " + request.getServerPort());
-		LOGGER.info("request.getServletPath - " + request.getServletPath());
+		// LOGGER.info("request.getAuthType - " + request.getAuthType());
+		// LOGGER.info("request.getCharacterEncoding - " +
+		// request.getCharacterEncoding());
+		// LOGGER.info("request.getContentLength - " +
+		// request.getContentLength());
+		// LOGGER.info("request.getContentLengthLong - " +
+		// request.getContentLengthLong());
+		// LOGGER.info("request.getContentType - " + request.getContentType());
+		// LOGGER.info("request.getContextPath - " + request.getContextPath());
+		// LOGGER.info("request.isSecure - " + request.isSecure());
+		// LOGGER.info("request.getPathInfo - " + request.getPathInfo());
+		// LOGGER.info("request.getQueryString- " + request.getQueryString());
+		// LOGGER.info("request.getMethod - " + request.getMethod());
+		// LOGGER.info("request.getRequestURI - " + request.getRequestURI());
+		// LOGGER.info("request.getRequestURL - " + request.getRequestURL());
+		// LOGGER.info("request.getProtocol- " + request.getProtocol());
+		// LOGGER.info("request.getRemoteAddr- " + request.getRemoteAddr());
+		// LOGGER.info("request.getRemoteHost - " + request.getRemoteHost());
+		// LOGGER.info("request.getRemotePort - " + request.getRemotePort());
+		// LOGGER.info("request.getRemoteUser- " + request.getRemoteUser());
+		// LOGGER.info("request.getScheme - " + request.getScheme());
+		// LOGGER.info("request.getServerName - " + request.getServerName());
+		// LOGGER.info("request.getServerPort - " + request.getServerPort());
+		// LOGGER.info("request.getServletPath - " + request.getServletPath());
 
 		LOGGER.info("Start - Read All Header");
 		Enumeration<String> attributeNames = request.getHeaderNames();
 		while (attributeNames.hasMoreElements()) {
 			String headerName = attributeNames.nextElement();
-			LOGGER.info("headerName - " + headerName);
-			Enumeration<String> getAllHeaderValue = request.getHeaders(headerName);
-			int count = 0;
-			while (getAllHeaderValue.hasMoreElements()) {
-				String headerValue = getAllHeaderValue.nextElement();
-				LOGGER.info(count + " - headerValue - " + headerValue);
-				count++;
+			if ("hmac".equalsIgnoreCase(headerName)) {
+				LOGGER.info("headerName - " + headerName);
+				Enumeration<String> getAllHeaderValue = request.getHeaders(headerName);
+				int count = 0;
+				while (getAllHeaderValue.hasMoreElements()) {
+					String headerValue = getAllHeaderValue.nextElement();
+					LOGGER.info(count + " - headerValue - " + headerValue);
+					count++;
+				}
 			}
 		}
 		LOGGER.info("End - Read All Header");
@@ -75,6 +79,7 @@ public class IpnController {
 		}
 		LOGGER.info("End - Read All Parameter");
 
+		/*
 		LOGGER.info("Start - Read All Attribute");
 		attributeNames = request.getAttributeNames();
 		while (attributeNames.hasMoreElements()) {
@@ -100,7 +105,7 @@ public class IpnController {
 			// fw.close();
 		} else {
 			LOGGER.info("File already exists.");
-		}
+		} */
 		LOGGER.info("end - /IPN-GET");
 		return "ipn-successfully received";
 	}
